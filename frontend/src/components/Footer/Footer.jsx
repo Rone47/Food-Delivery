@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";  // Import Link for navigation
 import "./Footer.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -15,7 +16,10 @@ const Footer = () => {
     <div className="footer" id="footer">
       <div className="footer-content">
         <div className="footer-content-left">
-          <img src={assets.logo} alt="" />
+          {/* Wrap logo with Link to home page */}
+          <Link to="/">
+            <img src={assets.logo} alt="Go to Home" />
+          </Link>
           <p>
             Experience the convenience of fresh and delicious meals delivered
             right to your door.

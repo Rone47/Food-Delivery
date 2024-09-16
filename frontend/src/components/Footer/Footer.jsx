@@ -3,8 +3,6 @@ import "./Footer.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faFacebook,
-  faTwitter,
-  faLinkedin,
   faXTwitter,
   faWhatsapp,
   faInstagram,

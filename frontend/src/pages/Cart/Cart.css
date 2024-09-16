@@ -52,6 +52,7 @@
     padding: 12px 0px;
     border-radius: 4px;
     cursor: pointer;
+    margin-top: 20px;
 }
 .cart-promocode{
     flex: 1;
@@ -81,3 +82,11 @@
     color: white;
     border-radius: 4px;
 }
+  @media (max-width:750px) {
+    .cart-bottom{
+        flex-direction: column-reverse;
+    }
+    .cart-promocode{
+        justify-content: start;
+    }
+  }

@@ -8,49 +8,59 @@ const Add = () => {
 
   const url = 'http://localhost:8080';
   const [image, setImage] = useState(false);
+  const [customCategory, setCustomCategory] = useState(""); // State for custom category
   const [data, setData] = useState({
     name: "",
     description: "",
     price: "",
-    category: "Salad",
+    category: "Salad", // Default category is Salad
   });
 
   const onChangeHandler = (event) => {
     const name = event.target.name;
     const value = event.target.value;
+    
+    // If changing the category, check if it's "Others"
+    if (name === "category" && value === "Others") {
+      setCustomCategory(""); // Reset custom category when selecting "Others"
+    }
+    
     setData((data) => ({ ...data, [name]: value }));
   };
 
   const onSubmitHandler = async (event) => {
     event.preventDefault();
+    
+    // If the "Others" option is selected, set the category to the custom category
+    const finalCategory = data.category === "Others" ? customCategory : data.category;
+    
     const formData = new FormData();
-    formData.append('name',data.name);
-    formData.append('description',data.description);
+    formData.append('name', data.name);
+    formData.append('description', data.description);
     formData.append('price', Number(data.price));
-    formData.append('category',data.category);
-    formData.append('image',image);
-    const response = await axios.post(`${url}/api/food/add`,formData);
+    formData.append('category', finalCategory); // Use the final category
+    formData.append('image', image);
+    
+    const response = await axios.post(`${url}/api/food/add`, formData);
+    
     if (response.data.success) {
-      setData(
-        {
-          name: "",
-          description: "",
-          price: "",
-          category: "Salad",
-        }
-      )
-      setImage(false)
-      toast.success(response.data.message)
+      setData({
+        name: "",
+        description: "",
+        price: "",
+        category: "Salad", // Reset category to default
+      });
+      setImage(false);
+      toast.success(response.data.message);
+    } else {
+      toast.error(response.data.message);
     }
-    else {
-      toast.error(response.data.message)
-    }
-  }
+  };
 
   return (
     <div className="add">
       <form className="flex-col" onSubmit={onSubmitHandler}>
-        <div className="add-img- upload flex-col">
+        <div className="add-img-upload flex-col">
           <p>Upload Image</p>
           <label htmlFor="image">
             <img
@@ -90,7 +100,7 @@ const Add = () => {
         <div className="add-category-price">
           <div className="add-category flex-col">
             <p>Product category</p>
-            <select onChange={onChangeHandler} name="category">
+            <select onChange={onChangeHandler} name="category" value={data.category}>
               <option value="Salad">Salad</option>
               <option value="Rolls">Rolls</option>
               <option value="Deserts">Deserts</option>
@@ -101,6 +111,18 @@ const Add = () => {
               <option value="Noodles">Noodles</option>
               <option value="Others">Others</option>
             </select>
+            
+            {/* Render input for custom category if "Others" is selected */}
+            {data.category === "Others" && (
+              <input
+                type="text"
+                name="customCategory"
+                value={customCategory}
+                onChange={(e) => setCustomCategory(e.target.value)}
+                placeholder="Enter your category"
+                required
+              />
+            )}
           </div>
           <div className="add-price flex-col">
             <p>Product price</p>
@@ -122,3 +144,4 @@ const Add = () => {
 };
 
 export default Add;
+

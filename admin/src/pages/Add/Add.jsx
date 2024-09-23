@@ -4,9 +4,9 @@ import { assets } from "../../assets/assets";
 import axios from 'axios';
 import { toast } from "react-toastify";
 
-const Add = () => {
+const Add = ({url}) => {
 
-  const url = 'http://localhost:8080';
+  
   const [image, setImage] = useState(false);
   const [customCategory, setCustomCategory] = useState(""); // State for custom category
   const [data, setData] = useState({

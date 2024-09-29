@@ -4,7 +4,7 @@ import Sidebar from "./components/Sidebar/Sidebar"; // Corrected path
 import { Routes, Route } from "react-router-dom";
 import Add from "./pages/Add/Add";
 import Orders from "./pages/Orders/Orders";
-import List from "./pages/List/List"; // Corrected path
+import List from "./pages/List/List"; // Ensure correct casing
 import { ToastContainer } from 'react-toastify'; // Removed unused 'toast'
 import 'react-toastify/dist/ReactToastify.css';
 

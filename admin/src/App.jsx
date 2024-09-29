@@ -1,16 +1,16 @@
 import React from "react";
 import Navbar from "./components/Navbar/Navbar";
-import Sidebar from "./components/sidebar/sidebar";
+import Sidebar from "./components/Sidebar/Sidebar"; // Corrected path
 import { Routes, Route } from "react-router-dom";
 import Add from "./pages/Add/Add";
 import Orders from "./pages/Orders/Orders";
-import List from "./pages/LIst/List";
-import { ToastContainer, toast } from 'react-toastify';
+import List from "./pages/List/List"; // Corrected path
+import { ToastContainer } from 'react-toastify'; // Removed unused 'toast'
 import 'react-toastify/dist/ReactToastify.css';
 
 const App = () => {
 
-const url = 'https://food-delivery-backend-02qb.onrender.com'
+  const url = 'https://food-delivery-backend-02qb.onrender.com'
 
   return (
     <div>

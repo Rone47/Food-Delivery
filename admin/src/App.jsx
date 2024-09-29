@@ -10,7 +10,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const App = () => {
 
-const url = 'http://localhost:8080'
+const url = 'https://food-delivery-backend-02qb.onrender.com'
 
   return (
     <div>

@@ -9,7 +9,7 @@ import 'dotenv/config';
 
 //app config
 const app = express();
-const port = 8080;
+const port = process.env.PORT || 8080;
 
 //middleware
 app.use(express.json());
